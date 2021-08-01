@@ -1,18 +1,17 @@
 #include "WathyBell.h"
 
-RTC_DATA_ATTR bool DARKMODE = true;
-RTC_DATA_ATTR uint8_t ROTATION = 0;
-RTC_DATA_ATTR int16_t ALARM = -1;
+bool DARKMODE = true;
 
 float BatteryMax = 4.1;
 float BatteryMin = 3.0;
+
 
 WatchyBell::WatchyBell() {} //constructor
 
 void WatchyBell::drawWatchFace()
 {
     // ---- Maintenance ----------------
-    MidnightMaintenance();
+    maintenance();
 
     // ---- Basic display rendering ----------------
     display.fillScreen(DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
@@ -149,10 +148,32 @@ void WatchyBell::drawBattery()
     display.fillRoundRect(SPACING + (2 * BATTERY_SPACING), SPACING + (2 * BATTERY_SPACING), BatteryCharge * (BATTERY_WIDTH - (4 * BATTERY_SPACING)), BATTERY_HEIGHT - (4 * BATTERY_SPACING), BATTERY_SPACING / 4, DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
 }
 
-void WatchyBell::MidnightMaintenance()
+void WatchyBell::maintenance()
 {
     if (currentTime.Hour == 0 && currentTime.Minute == 0)
     {
         sensor.resetStepCounter();
     }
+
+    if ((currentTime.Hour % 12) == 0 && currentTime.Minute == 0)
+    {
+        timeSync();
+    }
+}
+
+void WatchyBell::timeSync()
+{
+    if (connectWiFi()){
+        configTzTime(NTP_TZ, NTP_SERVER);
+
+        int syncTime = 0;
+
+        while (sntp_get_sync_status() != SNTP_SYNC_STATUS_COMPLETED && syncTime < 20)
+        {
+            ++syncTime;
+            delay(200)
+        }
+        
+    }
+    
 }
