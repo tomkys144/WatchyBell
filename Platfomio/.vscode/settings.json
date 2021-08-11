@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "esp32-hal.h": "c"
-    }
+    },
+    "platformio-ide.activateOnlyOnPlatformIOProject": true
 }
