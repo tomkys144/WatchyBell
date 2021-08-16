@@ -1,0 +1,29 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          
+      - name: Doxygen build
+        uses: mattnotmitt/doxygen-action@v1.3.1
+        with:
+          working-directory: 'Doxygen'
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./Doxygen/html
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: docs
