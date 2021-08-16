@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wakeup_5freason_61',['wakeup_reason',['../classWatchyBase.html#a69fa3210ca496ebe5b99cd78bfa01970',1,'WatchyBase']]]
+  ['wakeup_5freason_70',['wakeup_reason',['../classWatchyBase.html#a69fa3210ca496ebe5b99cd78bfa01970',1,'WatchyBase']]]
 ];

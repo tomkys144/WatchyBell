@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['oswald_5fregular46pt7b_2eh_20',['Oswald_Regular46pt7b.h',['../Oswald__Regular46pt7b_8h.html',1,'']]],
-  ['oswald_5fregular9pt7b_2eh_21',['Oswald_Regular9pt7b.h',['../Oswald__Regular9pt7b_8h.html',1,'']]]
+  ['ntp_5fserver1_20',['NTP_SERVER1',['../WatchyBase_8hpp.html#a1d9039653c41afbfdaf5ed2040d2d504',1,'WatchyBase.hpp']]],
+  ['ntp_5fserver2_21',['NTP_SERVER2',['../WatchyBase_8hpp.html#a2695b0b8757d0059a263bb11bb64b4b3',1,'WatchyBase.hpp']]],
+  ['ntp_5fserver3_22',['NTP_SERVER3',['../WatchyBase_8hpp.html#ac4816bfd3b9a4a252736c60149328296',1,'WatchyBase.hpp']]],
+  ['ntp_5ftz_23',['NTP_TZ',['../WatchyBase_8hpp.html#a3e43f8d212840098156fbd4de8113ab4',1,'WatchyBase.hpp']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['syncntptime_54',['syncNtpTime',['../classWatchyBase.html#a0dd7630080da9a9c948eb56a35e304d3',1,'WatchyBase']]]
+  ['maintenance_62',['maintenance',['../classWatchyBell.html#a7acb78e18aa1c1559a2253daf3fc5a2e',1,'WatchyBell']]]
 ];

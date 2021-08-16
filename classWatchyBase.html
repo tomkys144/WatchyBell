@@ -91,6 +91,8 @@ $(document).ready(function(){initNavTree('classWatchyBase.html',''); initResizab
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="classWatchyBase-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">WatchyBase Class Reference</div>  </div>
@@ -107,7 +109,7 @@ Inheritance diagram for WatchyBase:</div>
  <div class="center">
   <img src="classWatchyBase.png" usemap="#WatchyBase_map" alt=""/>
   <map id="WatchyBase_map" name="WatchyBase_map">
-<area href="classWatchyBell.html" alt="WatchyBell" shape="rect" coords="0,112,82,136"/>
+<area href="classWatchyBell.html" title="Watch face rendering." alt="WatchyBell" shape="rect" coords="0,112,82,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -116,12 +118,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9cbcd51fdbd330a8fe7e687e2261384d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a9cbcd51fdbd330a8fe7e687e2261384d">WatchyBase</a> ()</td></tr>
 <tr class="separator:a9cbcd51fdbd330a8fe7e687e2261384d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a07ffd2033a06fb58c6206061257117"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a1a07ffd2033a06fb58c6206061257117">init</a> ()</td></tr>
+<tr class="memdesc:a1a07ffd2033a06fb58c6206061257117"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init class on wakeup.  <a href="classWatchyBase.html#a1a07ffd2033a06fb58c6206061257117">More...</a><br /></td></tr>
 <tr class="separator:a1a07ffd2033a06fb58c6206061257117"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9e44b72cc69a36504cb4ce887e190b8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#ab9e44b72cc69a36504cb4ce887e190b8">handleButtonPress</a> ()</td></tr>
+<tr class="memdesc:ab9e44b72cc69a36504cb4ce887e190b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handling other button press than default Watchy functions.  <a href="classWatchyBase.html#ab9e44b72cc69a36504cb4ce887e190b8">More...</a><br /></td></tr>
 <tr class="separator:ab9e44b72cc69a36504cb4ce887e190b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a189d0d5e970757f238693dab9be49f49"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a189d0d5e970757f238693dab9be49f49">deepSleep</a> ()</td></tr>
+<tr class="memdesc:a189d0d5e970757f238693dab9be49f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable interrupts and put watch to sleep.  <a href="classWatchyBase.html#a189d0d5e970757f238693dab9be49f49">More...</a><br /></td></tr>
 <tr class="separator:a189d0d5e970757f238693dab9be49f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dd7630080da9a9c948eb56a35e304d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a0dd7630080da9a9c948eb56a35e304d3">syncNtpTime</a> ()</td></tr>
+<tr class="memdesc:a0dd7630080da9a9c948eb56a35e304d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">NTP time sync.  <a href="classWatchyBase.html#a0dd7630080da9a9c948eb56a35e304d3">More...</a><br /></td></tr>
 <tr class="separator:a0dd7630080da9a9c948eb56a35e304d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a664845ea571f0aa1cc5d992f97766083"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a664845ea571f0aa1cc5d992f97766083">connectWiFi</a> ()</td></tr>
 <tr class="separator:a664845ea571f0aa1cc5d992f97766083"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,6 +138,24 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a69fa3210ca496ebe5b99cd78bfa01970"><td class="memItemLeft" align="right" valign="top">esp_sleep_wakeup_cause_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a69fa3210ca496ebe5b99cd78bfa01970">wakeup_reason</a></td></tr>
 <tr class="separator:a69fa3210ca496ebe5b99cd78bfa01970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:afe8f0a37c210c5bb14f2faf05255f959"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#afe8f0a37c210c5bb14f2faf05255f959">_rtcConfig</a> ()</td></tr>
+<tr class="memdesc:afe8f0a37c210c5bb14f2faf05255f959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration of RTC.  <a href="classWatchyBase.html#afe8f0a37c210c5bb14f2faf05255f959">More...</a><br /></td></tr>
+<tr class="separator:afe8f0a37c210c5bb14f2faf05255f959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae44456b0a61d705243e4962dce581d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#aae44456b0a61d705243e4962dce581d1">_bmaConfig</a> ()</td></tr>
+<tr class="memdesc:aae44456b0a61d705243e4962dce581d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration of BMA.  <a href="classWatchyBase.html#aae44456b0a61d705243e4962dce581d1">More...</a><br /></td></tr>
+<tr class="separator:aae44456b0a61d705243e4962dce581d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:ae49a41ebbe62ef6803317a4aae21a19c"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#ae49a41ebbe62ef6803317a4aae21a19c">_readRegister</a> (uint8_t address, uint8_t reg, uint8_t *data, uint16_t len)</td></tr>
+<tr class="memdesc:ae49a41ebbe62ef6803317a4aae21a19c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from register.  <a href="classWatchyBase.html#ae49a41ebbe62ef6803317a4aae21a19c">More...</a><br /></td></tr>
+<tr class="separator:ae49a41ebbe62ef6803317a4aae21a19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e77119b3e2f535fdd4179d07786cbcb"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a0e77119b3e2f535fdd4179d07786cbcb">_writeRegister</a> (uint8_t address, uint8_t reg, uint8_t *data, uint16_t len)</td></tr>
+<tr class="memdesc:a0e77119b3e2f535fdd4179d07786cbcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to register.  <a href="classWatchyBase.html#a0e77119b3e2f535fdd4179d07786cbcb">More...</a><br /></td></tr>
+<tr class="separator:a0e77119b3e2f535fdd4179d07786cbcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for Watchy. </p>
@@ -155,6 +179,230 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aae44456b0a61d705243e4962dce581d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae44456b0a61d705243e4962dce581d1">&#9670;&nbsp;</a></span>_bmaConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WatchyBase::_bmaConfig </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Configuration of BMA. </p>
+<p>Output data rate in Hz</p>
+<p>Optional parameters:</p><ul>
+<li>BMA4_OUTPUT_DATA_RATE_0_78HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_1_56HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_3_12HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_6_25HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_12_5HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_25HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_50HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_100HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_200HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_400HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_800HZ</li>
+<li>BMA4_OUTPUT_DATA_RATE_1600HZ</li>
+</ul>
+<p>G-range</p>
+<p>Optional parameters</p><ul>
+<li>BMA4_ACCEL_RANGE_2G</li>
+<li>BMA4_ACCEL_RANGE_4G</li>
+<li>BMA4_ACCEL_RANGE_8G</li>
+<li>BMA4_ACCEL_RANGE_16G</li>
+</ul>
+<p>Bandwidth parameter, determines filter configuration</p>
+<p>Optional parameters:</p><ul>
+<li>BMA4_ACCEL_OSR4_AVG1</li>
+<li>BMA4_ACCEL_OSR2_AVG2</li>
+<li>BMA4_ACCEL_NORMAL_AVG4</li>
+<li>BMA4_ACCEL_CIC_AVG8</li>
+<li>BMA4_ACCEL_RES_AVG16</li>
+<li>BMA4_ACCEL_RES_AVG32</li>
+<li>BMA4_ACCEL_RES_AVG64</li>
+<li>BMA4_ACCEL_RES_AVG128</li>
+</ul>
+<p>Filter performance mode</p>
+<p>Optional parameters:</p><ul>
+<li>BMA4_CIC_AVG_MODE</li>
+<li>BMA4_CONTINUOUS_MODE</li>
+</ul>
+<p>Configure the BMA423 accelerometer</p>
+<p>Enable BMA423 accelerometer </p><dl class="section warning"><dt>Warning</dt><dd>Need to use feature, you must first enable the accelerometer</dd></dl>
+<p>Configure BMA423 pinout config </p><dl class="section warning"><dt>Warning</dt><dd>The correct trigger interrupt needs to be configured as needed</dd></dl>
+<p>Remap BMA423 axis </p><dl class="section warning"><dt>Warning</dt><dd>Need to raise the wrist function </dd>
+<dd>
+Need to set the correct axis</dd></dl>
+<p>Enable BMA423 isStepCounter feature</p>
+<p>Enable BMA423 isTilt feature</p>
+<p>Enable BMA423 isDoubleClick feature</p>
+<p>Reset steps</p>
+<p>Turn on feature interrupt</p>
+
+</div>
+</div>
+<a id="ae49a41ebbe62ef6803317a4aae21a19c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae49a41ebbe62ef6803317a4aae21a19c">&#9670;&nbsp;</a></span>_readRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t WatchyBase::_readRegister </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read from register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td></td></tr>
+    <tr><td class="paramname">reg</td><td></td></tr>
+    <tr><td class="paramname">data</td><td></td></tr>
+    <tr><td class="paramname">len</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t </dd></dl>
+
+</div>
+</div>
+<a id="afe8f0a37c210c5bb14f2faf05255f959"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe8f0a37c210c5bb14f2faf05255f959">&#9670;&nbsp;</a></span>_rtcConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WatchyBase::_rtcConfig </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Configuration of RTC. </p>
+<p><a href="https://github.com/JChristensen/DS3232RTC">https://github.com/JChristensen/DS3232RTC</a></p>
+
+</div>
+</div>
+<a id="a0e77119b3e2f535fdd4179d07786cbcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e77119b3e2f535fdd4179d07786cbcb">&#9670;&nbsp;</a></span>_writeRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t WatchyBase::_writeRegister </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write to register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td></td></tr>
+    <tr><td class="paramname">reg</td><td></td></tr>
+    <tr><td class="paramname">data</td><td></td></tr>
+    <tr><td class="paramname">len</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t </dd></dl>
+
+</div>
+</div>
 <a id="a664845ea571f0aa1cc5d992f97766083"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a664845ea571f0aa1cc5d992f97766083">&#9670;&nbsp;</a></span>connectWiFi()</h2>
 
@@ -194,6 +442,8 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Enable interrupts and put watch to sleep. </p>
 
 </div>
 </div>
@@ -237,6 +487,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Handling other button press than default Watchy functions. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>add button functions (alarm, etc.) </dd></dl>
+
 </div>
 </div>
 <a id="a1a07ffd2033a06fb58c6206061257117"></a>
@@ -262,6 +515,8 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Init class on wakeup. </p>
+
 </div>
 </div>
 <a id="a0dd7630080da9a9c948eb56a35e304d3"></a>
@@ -278,6 +533,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>NTP time sync. </p>
 
 </div>
 </div>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['watchybase_55',['WatchyBase',['../classWatchyBase.html#a9cbcd51fdbd330a8fe7e687e2261384d',1,'WatchyBase']]],
-  ['watchybell_56',['WatchyBell',['../classWatchyBell.html#a963ec6e0b847879dd361589f9fe02d88',1,'WatchyBell']]]
+  ['syncntptime_63',['syncNtpTime',['../classWatchyBase.html#a0dd7630080da9a9c948eb56a35e304d3',1,'WatchyBase']]]
 ];
