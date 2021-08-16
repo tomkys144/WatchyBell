@@ -35,13 +35,13 @@ RTC_DATA_ATTR float BatteryMin;
 // ---- CLass declaration ----------------
 class WatchyBell : public WatchyBase
 {
-  public:
-	WatchyBell ();
-	void drawWatchFace ();
-	void drawTime ();
-	void drawInfo ();
-	void drawBattery ();
-	void maintenance ();
+public:
+  WatchyBell ();
+  void drawWatchFace ();
+  void drawTime ();
+  void drawInfo ();
+  void drawBattery ();
+  void maintenance ();
 };
 
 #endif /* WATCHYBELL_HPP */

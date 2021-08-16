@@ -30,25 +30,33 @@
 #define NTP_SERVER2 nullptr
 #define NTP_SERVER3 nullptr
 
+/**
+ * @class WatchyBase
+ * 
+ * @brief Base class for Watchy
+ * 
+ * Upgraded Watchy class with advance functions
+ * 
+ */
 class WatchyBase : public Watchy
 {
-  public:
-	WatchyBase ();
-	virtual void init ();
-	virtual void handleButtonPress ();
-	virtual void deepSleep ();
-	esp_sleep_wakeup_cause_t wakeup_reason;
-	void timeNtpSync ();
-	bool connectWiFi ();
-	void disableWiFI ();
+public:
+  WatchyBase ();
+  virtual void init ();
+  virtual void handleButtonPress ();
+  virtual void deepSleep ();
+  esp_sleep_wakeup_cause_t wakeup_reason;
+  void syncNtpTime ();
+  bool connectWiFi ();
+  void disableWiFI ();
 
-  private:
-	void _rtcConfig ();
-	void _bmaConfig ();
-	static uint16_t _readRegister (uint8_t address, uint8_t reg, uint8_t *data,
-	                               uint16_t len);
-	static uint16_t _writeRegister (uint8_t address, uint8_t reg,
-	                                uint8_t *data, uint16_t len);
+private:
+  void _rtcConfig ();
+  void _bmaConfig ();
+  static uint16_t _readRegister (uint8_t address, uint8_t reg, uint8_t* data,
+                                 uint16_t len);
+  static uint16_t _writeRegister (uint8_t address, uint8_t reg, uint8_t* data,
+                                  uint16_t len);
 };
 
 #endif /* WATCHYBASE_HPP */
