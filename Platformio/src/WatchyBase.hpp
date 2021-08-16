@@ -1,18 +1,11 @@
-/*
- File: WatchyBase.hpp
- Project: WatchyBell
- File Created: 11/08/2021, 19:00:51
- Author: Tomáš Kysela (tomkys144@gmail.com)
- -----
- Last Modified: 11/08/2021, 21:00:23
- Modified By: Tomáš Kysela
- -----
- Copyright (c) 2021 Tomáš Kysela
-*/
+/**
+ @file WatchyBase.hpp
+ @date 11/08/2021
+ @author Tomáš Kysela (tomkys144@gmail.com)
+ @copyright (c) 2021 Tomáš Kysela
 
-/*
- Based on SQFMI's Watchy(https://github.com/sqfmi/Watchy)
- Inspired by pxl999 (https://github.com/dezign999/pxl999)
+ @attention Based on SQFMI's Watchy (https://github.com/sqfmi/Watchy)
+ @attention Inspired by pxl999 (https://github.com/dezign999/pxl999)
 */
 
 #ifndef WATCHYBASE_HPP
@@ -25,18 +18,17 @@
 #include "fonts/Oswald_Regular9pt7b.h"
 
 // ---- Time ----------------
-#define NTP_TZ "CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00"
-#define NTP_SERVER1 "pool.ntp.org"
-#define NTP_SERVER2 nullptr
-#define NTP_SERVER3 nullptr
+#define NTP_TZ "CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00" ///< Timezone string
+#define NTP_SERVER1 "pool.ntp.org" ///< NTP server 1
+#define NTP_SERVER2 nullptr ///< NTP server 2
+#define NTP_SERVER3 nullptr ///< NTP server 3
 
 /**
- * @class WatchyBase
- * 
- * @brief Base class for Watchy
- * 
- * Upgraded Watchy class with advance functions
- * 
+ @class WatchyBase
+ 
+ @brief Base class for Watchy
+ 
+ @details Upgraded Watchy class with advance functions
  */
 class WatchyBase : public Watchy
 {

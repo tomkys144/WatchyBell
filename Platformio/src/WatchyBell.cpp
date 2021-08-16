@@ -1,13 +1,8 @@
-/*
- File: WatchyBell.cpp
- Project: WatchyBell
- File Created: 11/08/2021, 19:00:52
- Author: Tomáš Kysela (tomkys144@gmail.com)
- -----
- Last Modified: 11/08/2021, 21:00:35
- Modified By: Tomáš Kysela
- -----
- Copyright (c) 2021 Tomáš Kysela
+/**
+ @file WatchyBell.cpp
+ @date 11/08/2021
+ @author Tomáš Kysela (tomkys144@gmail.com)
+ @copyright (c) 2021 Tomáš Kysela
 */
 
 #include "WatchyBell.hpp"
@@ -19,6 +14,9 @@ float BatteryMin = 3.0;
 
 WatchyBell::WatchyBell () {} // constructor
 
+/**
+ @brief Rendering watch face
+ */
 void WatchyBell::drawWatchFace ()
 {
   // ---- Maintenance ----------------
@@ -36,6 +34,9 @@ void WatchyBell::drawWatchFace ()
   drawBattery ();
 }
 
+/**
+ @brief Rendering time
+ */
 void WatchyBell::drawTime ()
 {
   display.setFont (&Oswald_Regular46pt7b);
@@ -76,6 +77,9 @@ void WatchyBell::drawTime ()
   display.print (time);
 }
 
+/**
+ @brief Rendering steps and date
+ */
 void WatchyBell::drawInfo ()
 {
   display.setFont (&Oswald_Regular9pt7b);
@@ -134,6 +138,9 @@ void WatchyBell::drawInfo ()
   display.print (text);
 }
 
+/**
+ @brief Rendering battery icon
+ */
 void WatchyBell::drawBattery ()
 {
   // ---- print battery outline ----------------
@@ -171,6 +178,9 @@ void WatchyBell::drawBattery ()
       DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
 }
 
+/**
+ @brief Doing maintenance at noon and midnight
+ */
 void WatchyBell::maintenance ()
 {
   if (currentTime.Hour == 0 && currentTime.Minute == 0)

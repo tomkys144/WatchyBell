@@ -1,13 +1,8 @@
-/*
- File: WatchyBase.cpp
- Project: WatchyBell
- File Created: 11/08/2021, 19:00:54
- Author: Tomáš Kysela (tomkys144@gmail.com)
- -----
- Last Modified: 11/08/2021, 21:00:5
- Modified By: Tomáš Kysela
- -----
- Copyright (c) 2021 Tomáš Kysela
+/**
+ @file WatchyBase.cpp
+ @date 11/08/2021
+ @author Tomáš Kysela (tomkys144@gmail.com)
+ @copyright (c) 2021 Tomáš Kysela
 */
 
 #include "WatchyBase.hpp"
@@ -18,6 +13,9 @@
 
 WatchyBase::WatchyBase () {}
 
+/**
+ @brief Init class on wakeup
+ */
 void WatchyBase::init ()
 {
   wakeup_reason = esp_sleep_get_wakeup_cause ();
@@ -51,15 +49,21 @@ void WatchyBase::init ()
   deepSleep ();
 }
 
+/**
+ @brief Handling other button press than default Watchy functions
+ */
 void WatchyBase::handleButtonPress ()
 {
   uint64_t wakeupBit = esp_sleep_get_ext1_wakeup_status ();
 
-  // TODO add button functions (alarm, etc.)
+  /// @todo add button functions (alarm, etc.)
 
   Watchy::handleButtonPress ();
 }
 
+/**
+ @brief Enable interrupts and put watch to sleep
+ */
 void WatchyBase::deepSleep ()
 {
   // enable deepsleep wake on RTC interrupt
@@ -70,6 +74,9 @@ void WatchyBase::deepSleep ()
   esp_deep_sleep_start ();
 }
 
+/**
+ @brief NTP time sync
+ */
 void WatchyBase::syncNtpTime ()
 {
   if (connectWiFi ())
@@ -110,11 +117,12 @@ void WatchyBase::syncNtpTime ()
     }
 }
 
-// ---- private ----------------
-
+/**
+ @brief Configuration of RTC
+ */
 void WatchyBase::_rtcConfig ()
 {
-  // https://github.com/JChristensen/DS3232RTC
+  /// https://github.com/JChristensen/DS3232RTC
   RTC.squareWave (SQWAVE_NONE); // disable square wave output
   // RTC.set(compileTime()); // set RTC time to compile time
   RTC.setAlarm (ALM2_EVERY_MINUTE, 0, 0, 0,
@@ -123,6 +131,9 @@ void WatchyBase::_rtcConfig ()
   RTC.read (currentTime);
 }
 
+/**
+ @brief Configuration of BMA
+ */
 void WatchyBase::_bmaConfig ()
 {
   if (sensor.begin (_readRegister, _writeRegister, delay) == false)
@@ -134,9 +145,9 @@ void WatchyBase::_bmaConfig ()
   // Accel parameter structure
   Acfg cfg;
 
-  /*!
-   Output data rate in Hz
-   Optional parameters:
+  /**
+   @brief Output data rate in Hz
+   @details Optional parameters:
       - BMA4_OUTPUT_DATA_RATE_0_78HZ
       - BMA4_OUTPUT_DATA_RATE_1_56HZ
       - BMA4_OUTPUT_DATA_RATE_3_12HZ
@@ -152,9 +163,9 @@ void WatchyBase::_bmaConfig ()
    */
   cfg.odr = BMA4_OUTPUT_DATA_RATE_100HZ;
 
-  /*!
-   G-range
-   Optional parameters
+  /**
+   @brief G-range
+   @details Optional parameters
       - BMA4_ACCEL_RANGE_2G
       - BMA4_ACCEL_RANGE_4G
       - BMA4_ACCEL_RANGE_8G
@@ -162,9 +173,9 @@ void WatchyBase::_bmaConfig ()
    */
   cfg.range = BMA4_ACCEL_RANGE_2G;
 
-  /*!
-   Bandwidth parameter, determines filter configuration
-   Optional parameters:
+  /**
+   @brief Bandwidth parameter, determines filter configuration
+   @details Optional parameters:
       - BMA4_ACCEL_OSR4_AVG1
       - BMA4_ACCEL_OSR2_AVG2
       - BMA4_ACCEL_NORMAL_AVG4
@@ -176,23 +187,27 @@ void WatchyBase::_bmaConfig ()
    */
   cfg.bandwidth = BMA4_ACCEL_NORMAL_AVG4;
 
-  /*!
-   Filter performance mode
-   Optional parameters:
+  /**
+   @brief Filter performance mode
+   @details Optional parameters:
       - BMA4_CIC_AVG_MODE
       - BMA4_CONTINUOUS_MODE
    */
   cfg.perf_mode = BMA4_CONTINUOUS_MODE;
 
-  // Configure the BMA423 accelerometer
+  /// @brief Configure the BMA423 accelerometer
   sensor.setAccelConfig (cfg);
 
-  /*
-   Enable BMA423 accelerometer
-   Warning : Need to use feature, you must first enable the accelerometer
+  /**
+   @brief Enable BMA423 accelerometer
+   @warning Need to use feature, you must first enable the accelerometer
    */
   sensor.enableAccel ();
 
+  /**
+   @brief Configure BMA423 pinout config
+   @warning The correct trigger interrupt needs to be configured as needed
+   */
   struct bma4_int_pin_config config;
   config.edge_ctrl = BMA4_LEVEL_TRIGGER;
   config.lvl = BMA4_ACTIVE_HIGH;
@@ -200,9 +215,13 @@ void WatchyBase::_bmaConfig ()
   config.output_en = BMA4_OUTPUT_ENABLE;
   config.input_en = BMA4_INPUT_DISABLE;
 
-  // The correct trigger interrupt needs to be configured as needed
   sensor.setINTPinConfig (config, BMA4_INTR1_MAP);
 
+  /**
+   @brief Remap BMA423 axis
+   @warning Need to raise the wrist function
+   @warning Need to set the correct axis
+   */
   struct bma423_axes_remap remap_data;
   remap_data.x_axis = 1;
   remap_data.x_axis_sign = 0xFF;
@@ -210,30 +229,36 @@ void WatchyBase::_bmaConfig ()
   remap_data.y_axis_sign = 0xFF;
   remap_data.z_axis = 2;
   remap_data.z_axis_sign = 0xFF;
-  /*
-   Need to raise the wrist function
-   Need to set the correct axis
-   */
+
   sensor.setRemapAxes (&remap_data);
 
-  // Enable BMA423 isStepCounter feature
+  /// @brief Enable BMA423 isStepCounter feature
   sensor.enableFeature (BMA423_STEP_CNTR, true);
 
-  // Enable BMA423 isTilt feature
+  /// @brief Enable BMA423 isTilt feature
   sensor.enableFeature (BMA423_TILT, true);
 
-  // Enable BMA423 isDoubleClick feature
+  /// @brief Enable BMA423 isDoubleClick feature
   sensor.enableFeature (BMA423_WAKEUP, true);
 
-  // Reset steps
+  /// @brief Reset steps
   sensor.resetStepCounter ();
 
-  // Turn o>n feature interrupt
+  /// @brief Turn on feature interrupt
   sensor.enableStepCountInterrupt ();
   sensor.enableTiltInterrupt ();
   sensor.enableWakeupInterrupt ();
 }
 
+/**
+ * @brief Read from register
+ * 
+ * @param address 
+ * @param reg 
+ * @param data 
+ * @param len 
+ * @return uint16_t 
+ */
 uint16_t WatchyBase::_readRegister (uint8_t address, uint8_t reg,
                                     uint8_t* data, uint16_t len)
 {
@@ -249,6 +274,15 @@ uint16_t WatchyBase::_readRegister (uint8_t address, uint8_t reg,
   return 0;
 }
 
+/**
+ * @brief Write to register
+ * 
+ * @param address 
+ * @param reg 
+ * @param data 
+ * @param len 
+ * @return uint16_t 
+ */
 uint16_t WatchyBase::_writeRegister (uint8_t address, uint8_t reg,
                                      uint8_t* data, uint16_t len)
 {
