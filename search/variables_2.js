@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['progmem_69',['PROGMEM',['../Oswald__Regular46pt7b_8h.html#a5c7056e0c5f21e77f4aa91acc32299e4',1,'PROGMEM():&#160;Oswald_Regular46pt7b.h'],['../Oswald__Regular9pt7b_8h.html#a5c7056e0c5f21e77f4aa91acc32299e4',1,'PROGMEM():&#160;Oswald_Regular9pt7b.h']]]
+  ['darkmode_79',['DARKMODE',['../WatchyBell_8cpp.html#a0c5ebcb7ac38c54065cc4161a9e0e078',1,'DARKMODE():&#160;WatchyBell.cpp'],['../WatchyBell_8hpp.html#a3f3a171e19f98e9130ed8cd5580a9e6e',1,'DARKMODE():&#160;WatchyBell.hpp']]]
 ];

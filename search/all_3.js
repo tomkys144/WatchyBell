@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['darkmode_10',['DARKMODE',['../WatchyBell_8cpp.html#a0c5ebcb7ac38c54065cc4161a9e0e078',1,'DARKMODE():&#160;WatchyBell.cpp'],['../WatchyBell_8hpp.html#a3f3a171e19f98e9130ed8cd5580a9e6e',1,'DARKMODE():&#160;WatchyBell.hpp']]],
-  ['deepsleep_11',['deepSleep',['../classWatchyBase.html#a189d0d5e970757f238693dab9be49f49',1,'WatchyBase']]],
-  ['disablewifi_12',['disableWiFI',['../classWatchyBase.html#a233e6d259d7d4cbb368082c740c0784e',1,'WatchyBase']]],
-  ['drawbattery_13',['drawBattery',['../classWatchyBell.html#aafa45e326d2368f143ba31a42aed02a8',1,'WatchyBell']]],
-  ['drawinfo_14',['drawInfo',['../classWatchyBell.html#a6a92ab12af4bcb425432119b210511dc',1,'WatchyBell']]],
-  ['drawtime_15',['drawTime',['../classWatchyBell.html#a28cb8803ef08e6860dc806f1b906b78d',1,'WatchyBell']]],
-  ['drawwatchface_16',['drawWatchFace',['../classWatchyBell.html#a5cfef784779da3ed94007eddc71dfd91',1,'WatchyBell']]]
+  ['battery_5fheight_7',['BATTERY_HEIGHT',['../WatchyBell_8hpp.html#a7551f4618ded0907d8c36306b18b244c',1,'WatchyBell.hpp']]],
+  ['battery_5fspacing_8',['BATTERY_SPACING',['../WatchyBell_8hpp.html#a10275dd050c8f681b1936fd16b4c1c21',1,'WatchyBell.hpp']]],
+  ['battery_5fwidth_9',['BATTERY_WIDTH',['../WatchyBell_8hpp.html#a06c3ae17b684e34ff7813c7130c7cf5f',1,'WatchyBell.hpp']]],
+  ['batterymax_10',['BatteryMax',['../WatchyBell_8cpp.html#a49d68ddc09d9b1d4c69d888e84d6617c',1,'BatteryMax():&#160;WatchyBell.cpp'],['../WatchyBell_8hpp.html#a23e7c901893824d7f2e60b236bf17bac',1,'BatteryMax():&#160;WatchyBell.hpp']]],
+  ['batterymin_11',['BatteryMin',['../WatchyBell_8cpp.html#a6d85356c33f22fcb741a0097a6adaa98',1,'BatteryMin():&#160;WatchyBell.cpp'],['../WatchyBell_8hpp.html#acb9450e6b3046c11fcb1e7990f54e363',1,'BatteryMin():&#160;WatchyBell.hpp']]],
+  ['batterysaver_12',['batterySaver',['../classWatchyBase.html#a7ddeaf0d68d99502f08ba30c41a9ffb8',1,'WatchyBase']]]
 ];

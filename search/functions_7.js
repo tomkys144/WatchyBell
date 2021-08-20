@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['watchybase_64',['WatchyBase',['../classWatchyBase.html#a9cbcd51fdbd330a8fe7e687e2261384d',1,'WatchyBase']]],
-  ['watchybell_65',['WatchyBell',['../classWatchyBell.html#a963ec6e0b847879dd361589f9fe02d88',1,'WatchyBell']]]
+  ['setalarm_70',['setAlarm',['../classWatchyBase.html#a69f9daedb5e08224eb913ca1d98b6397',1,'WatchyBase']]],
+  ['syncntptime_71',['syncNtpTime',['../classWatchyBase.html#a0dd7630080da9a9c948eb56a35e304d3',1,'WatchyBase']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['handlebuttonpress_17',['handleButtonPress',['../classWatchyBase.html#ab9e44b72cc69a36504cb4ce887e190b8',1,'WatchyBase']]]
+  ['connectwifi_13',['connectWiFi',['../classWatchyBase.html#a664845ea571f0aa1cc5d992f97766083',1,'WatchyBase']]]
 ];
