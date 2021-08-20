@@ -25,8 +25,7 @@
 #define NTP_SERVER3 nullptr                      ///< NTP server 3
 
 // ---- Alarm ----------------
-extern RTC_DATA_ATTR int8_t alarm_hour;
-extern RTC_DATA_ATTR int8_t alarm_min;
+extern RTC_DATA_ATTR int16_t alarm_timer;
 
 /**
  @class WatchyBase
@@ -51,6 +50,8 @@ public:
   void batterySaver (); /** @todo battery saver */
 
 private:
+  void timerConvert (uint8_t* hours, uint8_t* minutes, int16_t* timer,
+                     bool direction = false);
   void _rtcConfig ();
   void _bmaConfig ();
   static uint16_t _readRegister (uint8_t address, uint8_t reg, uint8_t* data,

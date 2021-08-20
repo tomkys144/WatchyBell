@@ -7,8 +7,7 @@
 
 #include "WatchyBase.hpp"
 
-RTC_DATA_ATTR int8_t alarm_hour = -1;
-RTC_DATA_ATTR int8_t alarm_min = -1;
+RTC_DATA_ATTR int16_t alarm_timer = -1;
 
 // ---- class WatchyBase ----------------
 
@@ -165,7 +164,7 @@ void WatchyBase::setAlarm ()
   guiState = APP_STATE;
   display.init (0, true);
   display.setFullWindow ();
-  if (alarm_hour < 0 || alarm_min < 0)
+  if (alarm_timer < 0)
     {
       int8_t setIndex = SET_HOUR;
       pinMode (DOWN_BTN_PIN, INPUT);
@@ -173,8 +172,8 @@ void WatchyBase::setAlarm ()
       pinMode (MENU_BTN_PIN, INPUT);
       pinMode (BACK_BTN_PIN, INPUT);
 
-      alarm_hour = currentTime.Hour;
-      alarm_min = currentTime.Minute;
+      uint8_t alarm_hour = currentTime.Hour;
+      uint8_t alarm_min = currentTime.Minute;
 
       while (true)
         {
@@ -229,8 +228,34 @@ void WatchyBase::setAlarm ()
           display.fillScreen (GxEPD_BLACK);
           display.setTextColor (GxEPD_WHITE);
           display.setFont (&Oswald_Regular46pt7b);
-          
         }
+    }
+}
+
+/**
+ @brief converts Timer to Hours and minutes and back
+ 
+ @param hours,minutes,timer Pointers to time variables
+ @param direction
+ @parblock
+ false: Hours+Mins -> Timer
+ true: Timer -> Hours+Mins
+
+ Default: false
+ @endparblock
+ */
+void WatchyBase::timerConvert (uint8_t* hours, uint8_t* minutes,
+                               int16_t* timer, bool direction)
+{
+  if (direction)
+    {
+      *hours = (*timer / 60);
+      *minutes = (*timer % 60);
+    }
+  else
+    {
+      *timer = *minutes;
+      *timer += (*hours * 60);
     }
 }
 
