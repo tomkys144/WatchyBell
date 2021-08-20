@@ -2,7 +2,7 @@
 
 ## About
 
-WatchyBell is a watch face for Watchy based on [BraininaBowl/Bahn-for-Watchy](https://github.com/BraininaBowl/Bahn-for-Watchy). This face is primarly focused on steps and time-tracking / time-sync.
+[WatchyBell](https://tomkys144.github.io/WatchyBell/) is a watch face for Watchy based on [BraininaBowl/Bahn-for-Watchy](https://github.com/BraininaBowl/Bahn-for-Watchy). This face is primarly focused on steps and time-tracking / time-sync.
 
 ## Features
 

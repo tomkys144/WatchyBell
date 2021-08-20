@@ -12,6 +12,9 @@ bool DARKMODE = true;
 float BatteryMax = 4.1;
 float BatteryMin = 3.0;
 
+/**
+ @brief Construct a new Watchy Bell:: Watchy Bell object
+ */
 WatchyBell::WatchyBell () {} // constructor
 
 /**

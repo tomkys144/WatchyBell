@@ -18,16 +18,21 @@
 #include "fonts/Oswald_Regular9pt7b.h"
 
 // ---- Time ----------------
-#define NTP_TZ "CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00" ///< Timezone string
-#define NTP_SERVER1 "pool.ntp.org" ///< NTP server 1
-#define NTP_SERVER2 nullptr ///< NTP server 2
-#define NTP_SERVER3 nullptr ///< NTP server 3
+#define NTP_TZ                                                                \
+  "CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00" ///< Timezone string
+#define NTP_SERVER1 "pool.ntp.org"               ///< NTP server 1
+#define NTP_SERVER2 nullptr                      ///< NTP server 2
+#define NTP_SERVER3 nullptr                      ///< NTP server 3
+
+// ---- Alarm ----------------
+extern RTC_DATA_ATTR int8_t alarm_hour;
+extern RTC_DATA_ATTR int8_t alarm_min;
 
 /**
  @class WatchyBase
- 
+
  @brief Base class for Watchy
- 
+
  @details Upgraded Watchy class with advance functions
  */
 class WatchyBase : public Watchy
@@ -41,6 +46,9 @@ public:
   void syncNtpTime ();
   bool connectWiFi ();
   void disableWiFI ();
+  void setAlarm ();     /** @todo set alarm */
+  void triggerAlarm (); /** @todo trigger alarm */
+  void batterySaver (); /** @todo battery saver */
 
 private:
   void _rtcConfig ();

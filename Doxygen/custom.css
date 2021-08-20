@@ -1,0 +1,15 @@
+html {
+    --primary-color: #FF8119;
+    --primary-dark-color: #FF7400;
+    --primary-light-color: #FFA458;
+    --primary-lighter-color: #FFC89A;
+    --primary-lightest-color: #FFF8F3;
+}
+
+html.dark-mode {
+    --primary-color: #D49A6A;
+    --primary-dark-color: #FFD1AA;
+    --primary-light-color: #AA6C39;
+    --primary-lighter-color: #191e21;
+    --primary-lightest-color: #191a1c;
+}

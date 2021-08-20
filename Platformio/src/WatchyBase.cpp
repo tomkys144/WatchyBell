@@ -7,10 +7,16 @@
 
 #include "WatchyBase.hpp"
 
+RTC_DATA_ATTR int8_t alarm_hour = -1;
+RTC_DATA_ATTR int8_t alarm_min = -1;
+
 // ---- class WatchyBase ----------------
 
 // ---- public --------------------------
 
+/**
+ @brief Construct a new Watchy Base:: Watchy Base object
+ */
 WatchyBase::WatchyBase () {}
 
 /**
@@ -23,7 +29,7 @@ void WatchyBase::init ()
 
   switch (wakeup_reason)
     {
-    // ---- RTC Alarm ----------------
+    // RTC Alarm
     case ESP_SLEEP_WAKEUP_EXT0:
       RTC.alarm (ALARM_2); // reset the alarm flag in RTC
       if (guiState == WATCHFACE_STATE)
@@ -33,12 +39,12 @@ void WatchyBase::init ()
         }
       break;
 
-    // ---- Button Press ----------------
+    // Button Press
     case ESP_SLEEP_WAKEUP_EXT1:
       handleButtonPress ();
       break;
 
-    // ---- Reset ----------------
+    // Reset
     default:
       _rtcConfig ();
       _bmaConfig ();
@@ -56,7 +62,10 @@ void WatchyBase::handleButtonPress ()
 {
   uint64_t wakeupBit = esp_sleep_get_ext1_wakeup_status ();
 
-  /// @todo add button functions (alarm, etc.)
+  if (wakeupBit & BACK_BTN_MASK && guiState == WATCHFACE_STATE)
+    {
+      setAlarm ();
+    }
 
   Watchy::handleButtonPress ();
 }
@@ -113,6 +122,114 @@ void WatchyBase::syncNtpTime ()
 
           RTC.write (currentTime);
           RTC.read (currentTime);
+        }
+    }
+}
+
+/**
+ @brief connect to configured WiFi
+
+ @return true
+ @return false
+ */
+bool WatchyBase::connectWiFi ()
+{
+  if (WL_CONNECT_FAILED == WiFi.begin ())
+    {
+      WIFI_CONFIGURED = false;
+    }
+  else
+    {
+      if (WL_CONNECTED == WiFi.waitForConnectResult ())
+        {
+          WIFI_CONFIGURED = true;
+        }
+      else
+        {
+          WIFI_CONFIGURED = false;
+
+          WiFi.mode (WIFI_OFF);
+          btStop ();
+        }
+    }
+  return WIFI_CONFIGURED;
+}
+
+/**
+ @brief disable WiFi
+ */
+void WatchyBase::disableWiFI () { WiFi.mode (WIFI_OFF); }
+
+void WatchyBase::setAlarm ()
+{
+  guiState = APP_STATE;
+  display.init (0, true);
+  display.setFullWindow ();
+  if (alarm_hour < 0 || alarm_min < 0)
+    {
+      int8_t setIndex = SET_HOUR;
+      pinMode (DOWN_BTN_PIN, INPUT);
+      pinMode (UP_BTN_PIN, INPUT);
+      pinMode (MENU_BTN_PIN, INPUT);
+      pinMode (BACK_BTN_PIN, INPUT);
+
+      alarm_hour = currentTime.Hour;
+      alarm_min = currentTime.Minute;
+
+      while (true)
+        {
+          if (digitalRead (MENU_BTN_PIN) == 1)
+            {
+              setIndex++;
+
+              if (setIndex > SET_MINUTE)
+                {
+                  break;
+                }
+            }
+
+          if (digitalRead (BACK_BTN_PIN) == 1)
+            {
+              if (setIndex != SET_HOUR)
+                {
+                  setIndex--;
+                }
+            }
+
+          if (digitalRead (DOWN_BTN_PIN) == 1)
+            {
+              switch (setIndex)
+                {
+                case SET_HOUR:
+                  alarm_hour == 23 ? (alarm_hour = 0) : alarm_hour++;
+                  break;
+                case SET_MINUTE:
+                  alarm_min == 59 ? (alarm_min = 0) : alarm_min++;
+                  break;
+                default:
+                  break;
+                }
+            }
+
+          if (digitalRead (UP_BTN_PIN) == 1)
+            {
+              switch (setIndex)
+                {
+                case SET_HOUR:
+                  alarm_hour == 0 ? (alarm_hour = 23) : alarm_hour--;
+                  break;
+                case SET_MINUTE:
+                  alarm_min == 0 ? (alarm_min = 59) : alarm_min--;
+                  break;
+                default:
+                  break;
+                }
+            }
+
+          display.fillScreen (GxEPD_BLACK);
+          display.setTextColor (GxEPD_WHITE);
+          display.setFont (&Oswald_Regular46pt7b);
+          
         }
     }
 }
@@ -252,12 +369,12 @@ void WatchyBase::_bmaConfig ()
 
 /**
  * @brief Read from register
- * 
- * @param address 
- * @param reg 
- * @param data 
- * @param len 
- * @return uint16_t 
+ *
+ * @param address
+ * @param reg
+ * @param data
+ * @param len
+ * @return uint16_t
  */
 uint16_t WatchyBase::_readRegister (uint8_t address, uint8_t reg,
                                     uint8_t* data, uint16_t len)
@@ -276,12 +393,12 @@ uint16_t WatchyBase::_readRegister (uint8_t address, uint8_t reg,
 
 /**
  * @brief Write to register
- * 
- * @param address 
- * @param reg 
- * @param data 
- * @param len 
- * @return uint16_t 
+ *
+ * @param address
+ * @param reg
+ * @param data
+ * @param len
+ * @return uint16_t
  */
 uint16_t WatchyBase::_writeRegister (uint8_t address, uint8_t reg,
                                      uint8_t* data, uint16_t len)
