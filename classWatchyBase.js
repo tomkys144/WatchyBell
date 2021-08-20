@@ -11,6 +11,7 @@ var classWatchyBase =
     [ "init", "classWatchyBase.html#a1a07ffd2033a06fb58c6206061257117", null ],
     [ "setAlarm", "classWatchyBase.html#a69f9daedb5e08224eb913ca1d98b6397", null ],
     [ "syncNtpTime", "classWatchyBase.html#a0dd7630080da9a9c948eb56a35e304d3", null ],
+    [ "timerConvert", "classWatchyBase.html#ad25f8459466c83773c361fdf7f4e04aa", null ],
     [ "triggerAlarm", "classWatchyBase.html#a7a0e3ec51f443190b24912cb2d37701f", null ],
     [ "wakeup_reason", "classWatchyBase.html#a69fa3210ca496ebe5b99cd78bfa01970", null ]
 ];

@@ -154,6 +154,9 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:ad25f8459466c83773c361fdf7f4e04aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#ad25f8459466c83773c361fdf7f4e04aa">timerConvert</a> (uint8_t *hours, uint8_t *minutes, int16_t *timer, bool direction=false)</td></tr>
+<tr class="memdesc:ad25f8459466c83773c361fdf7f4e04aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts Timer to Hours and minutes and back  <a href="classWatchyBase.html#ad25f8459466c83773c361fdf7f4e04aa">More...</a><br /></td></tr>
+<tr class="separator:ad25f8459466c83773c361fdf7f4e04aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe8f0a37c210c5bb14f2faf05255f959"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#afe8f0a37c210c5bb14f2faf05255f959">_rtcConfig</a> ()</td></tr>
 <tr class="memdesc:afe8f0a37c210c5bb14f2faf05255f959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration of RTC.  <a href="classWatchyBase.html#afe8f0a37c210c5bb14f2faf05255f959">More...</a><br /></td></tr>
 <tr class="separator:afe8f0a37c210c5bb14f2faf05255f959"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -354,7 +357,6 @@ Need to set the correct axis</dd></dl>
 </div><div class="memdoc">
 
 <p>Configuration of RTC. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>battery saver </dd></dl>
 <p><a href="https://github.com/JChristensen/DS3232RTC">https://github.com/JChristensen/DS3232RTC</a></p>
 
 </div>
@@ -592,6 +594,66 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>NTP time sync. </p>
+
+</div>
+</div>
+<a id="ad25f8459466c83773c361fdf7f4e04aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad25f8459466c83773c361fdf7f4e04aa">&#9670;&nbsp;</a></span>timerConvert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WatchyBase::timerConvert </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>hours</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>minutes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>timer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>direction</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>converts Timer to Hours and minutes and back </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>battery saver </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hours,minutes,timer</td><td>Pointers to time variables </td></tr>
+    <tr><td class="paramname">direction</td><td><p class="starttd">false: Hours+Mins -&gt; Timer true: Timer -&gt; Hours+Mins</p>
+<p class="endtd">Default: false </p>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
