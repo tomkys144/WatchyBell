@@ -25,6 +25,9 @@ void WatchyBell::drawWatchFace ()
   // ---- Maintenance ----------------
   maintenance ();
 
+  // ---- Alarm ----------------
+  WatchyBase::triggerAlarm(DARKMODE);
+
   // ---- Basic display rendering ----------------
   display.fillScreen (DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
   display.fillRoundRect (0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 8,

@@ -26,6 +26,12 @@
 
 // ---- Alarm ----------------
 extern RTC_DATA_ATTR int16_t alarm_timer;
+enum ALARM_OPTIONS
+{
+  OPTION_EDIT,
+  OPTION_STOP
+};
+#define ALARM_INTERVAL 200
 
 /**
  @class WatchyBase
@@ -45,11 +51,11 @@ public:
   void syncNtpTime ();
   bool connectWiFi ();
   void disableWiFI ();
-  void setAlarm ();     /** @todo set alarm */
-  void triggerAlarm (); /** @todo trigger alarm */
-  void batterySaver (); /** @todo battery saver */
+  void setAlarm ();
+  void triggerAlarm (bool darkmode);
 
 private:
+  void alarmConfig (uint8_t* hour, uint8_t* minute, int16_t* timer);
   void timerConvert (uint8_t* hours, uint8_t* minutes, int16_t* timer,
                      bool direction = false);
   void _rtcConfig ();

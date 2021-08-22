@@ -159,86 +159,343 @@ bool WatchyBase::connectWiFi ()
  */
 void WatchyBase::disableWiFI () { WiFi.mode (WIFI_OFF); }
 
+/**
+ @brief Setup alarm. If already set, gives option to edit or stop.
+ */
 void WatchyBase::setAlarm ()
 {
   guiState = APP_STATE;
   display.init (0, true);
   display.setFullWindow ();
+
+  uint16_t w, h;
+  int16_t x1, y1;
+  String text;
+
   if (alarm_timer < 0)
     {
-      int8_t setIndex = SET_HOUR;
+      uint8_t alarm_hour = currentTime.Hour;
+      uint8_t alarm_min = currentTime.Minute;
+
+      alarmConfig (&alarm_hour, &alarm_min, &alarm_timer);
+    }
+  else
+    {
+      uint8_t optionIndex = OPTION_EDIT;
+
       pinMode (DOWN_BTN_PIN, INPUT);
       pinMode (UP_BTN_PIN, INPUT);
       pinMode (MENU_BTN_PIN, INPUT);
       pinMode (BACK_BTN_PIN, INPUT);
 
-      uint8_t alarm_hour = currentTime.Hour;
-      uint8_t alarm_min = currentTime.Minute;
-
       while (true)
         {
           if (digitalRead (MENU_BTN_PIN) == 1)
             {
-              setIndex++;
-
-              if (setIndex > SET_MINUTE)
+              if (optionIndex == OPTION_EDIT)
                 {
-                  break;
+                  uint8_t alarm_hour = 0;
+                  uint8_t alarm_min = 0;
+
+                  timerConvert (&alarm_hour, &alarm_min, &alarm_timer, true);
+
+                  alarmConfig (&alarm_hour, &alarm_min, &alarm_timer);
                 }
+              else if (optionIndex == OPTION_STOP)
+                {
+                  alarm_timer = -1;
+                }
+
+              break;
             }
 
           if (digitalRead (BACK_BTN_PIN) == 1)
             {
-              if (setIndex != SET_HOUR)
-                {
-                  setIndex--;
-                }
+              break;
             }
 
           if (digitalRead (DOWN_BTN_PIN) == 1)
             {
-              switch (setIndex)
-                {
-                case SET_HOUR:
-                  alarm_hour == 23 ? (alarm_hour = 0) : alarm_hour++;
-                  break;
-                case SET_MINUTE:
-                  alarm_min == 59 ? (alarm_min = 0) : alarm_min++;
-                  break;
-                default:
-                  break;
-                }
+              optionIndex == OPTION_STOP ? (optionIndex = OPTION_EDIT)
+                                         : optionIndex++;
             }
 
           if (digitalRead (UP_BTN_PIN) == 1)
             {
-              switch (setIndex)
-                {
-                case SET_HOUR:
-                  alarm_hour == 0 ? (alarm_hour = 23) : alarm_hour--;
-                  break;
-                case SET_MINUTE:
-                  alarm_min == 0 ? (alarm_min = 59) : alarm_min--;
-                  break;
-                default:
-                  break;
-                }
+              optionIndex == OPTION_EDIT ? (optionIndex = OPTION_STOP)
+                                         : optionIndex--;
             }
 
           display.fillScreen (GxEPD_BLACK);
-          display.setTextColor (GxEPD_WHITE);
-          display.setFont (&Oswald_Regular46pt7b);
+          display.setFont (&Oswald_Regular9pt7b);
+
+          int16_t y_pos = 30;
+
+          text = "Edit alarm";
+          display.getTextBounds (text, 0, y_pos, &x1, &y1, &w, &h);
+          display.fillRect (x1 - 1, y1 - 10, 200, h + 15,
+                            optionIndex == OPTION_EDIT ? GxEPD_WHITE
+                                                       : GxEPD_BLACK);
+          display.setTextColor (optionIndex == OPTION_EDIT ? GxEPD_BLACK
+                                                           : GxEPD_WHITE);
+          display.println (text);
+
+          y_pos += (h + 30);
+
+          text = "Stop alarm";
+          display.getTextBounds (text, 0, y_pos, &x1, &y1, &w, &h);
+          display.fillRect (x1 - 1, y1 - 10, 200, h + 15,
+                            optionIndex == OPTION_STOP ? GxEPD_WHITE
+                                                       : GxEPD_BLACK);
+          display.setTextColor (optionIndex == OPTION_STOP ? GxEPD_BLACK
+                                                           : GxEPD_WHITE);
+          display.println (text);
+
+          display.display (true);
+        }
+    }
+
+  showMenu (menuIndex, false);
+}
+
+/**
+ @brief Checks if alarm should be triggered and if so, triggers alarm.
+ */
+void WatchyBase::triggerAlarm (bool darkmode)
+{
+  if (alarm_timer == 0)
+    {
+      pinMode (DOWN_BTN_PIN, INPUT);
+      pinMode (UP_BTN_PIN, INPUT);
+      pinMode (MENU_BTN_PIN, INPUT);
+      pinMode (BACK_BTN_PIN, INPUT);
+      pinMode (VIB_MOTOR_PIN, OUTPUT);
+
+      bool motorOn = false;
+
+      display.init (0, true);
+      display.setFullWindow ();
+      display.fillScreen (darkmode ? GxEPD_BLACK : GxEPD_WHITE);
+      display.setTextColor (darkmode ? GxEPD_WHITE : GxEPD_BLACK);
+      display.setFont (&Oswald_Regular46pt7b);
+
+      uint16_t w, h;
+      int16_t x1, y1;
+      String text = "ALARM";
+
+      display.getTextBounds (text, 0, 0, &x1, &y1, &w, &h);
+
+      display.setCursor ((DISPLAY_WIDTH - w) / 2, (DISPLAY_HEIGHT - h) / 2);
+
+      display.print (text);
+
+      while (true)
+        {
+          if ((digitalRead (DOWN_BTN_PIN) == 1)
+              || (digitalRead (UP_BTN_PIN) == 1)
+              || (digitalRead (MENU_BTN_PIN) == 1)
+              || (digitalRead (BACK_BTN_PIN) == 1))
+            {
+              break;
+            }
+
+          motorOn = !motorOn;
+          digitalWrite (VIB_MOTOR_PIN, motorOn);
+          delay (ALARM_INTERVAL);
+        }
+
+      if (alarm_timer >= 0)
+        {
+          alarm_timer--;
         }
     }
 }
 
 /**
+ @brief sets alarm time
+
+ @param hour,minute,timer Timer and time vars pointers
+ */
+void WatchyBase::alarmConfig (uint8_t* hour, uint8_t* minute, int16_t* timer)
+{
+  display.init (0, true);
+  display.setFullWindow ();
+
+  int8_t setIndex = SET_HOUR;
+  pinMode (DOWN_BTN_PIN, INPUT);
+  pinMode (UP_BTN_PIN, INPUT);
+  pinMode (MENU_BTN_PIN, INPUT);
+  pinMode (BACK_BTN_PIN, INPUT);
+
+  int8_t blink = 0;
+  bool alarm_set = false;
+
+  uint16_t text_width, text_height;
+  int16_t x1, y1;
+  String text;
+
+  while (true)
+    {
+      if (digitalRead (MENU_BTN_PIN) == 1)
+        {
+          setIndex++;
+
+          if (setIndex > SET_MINUTE)
+            {
+              alarm_set = true;
+              break;
+            }
+        }
+
+      if (digitalRead (BACK_BTN_PIN) == 1)
+        {
+          if (setIndex != SET_HOUR)
+            {
+              setIndex--;
+            }
+          else
+            {
+              break;
+            }
+        }
+
+      blink = 1 - blink;
+
+      if (digitalRead (DOWN_BTN_PIN) == 1)
+        {
+          blink = 1;
+          switch (setIndex)
+            {
+            case SET_HOUR:
+              *hour == 23 ? (*hour = 0) : *hour++;
+              break;
+            case SET_MINUTE:
+              *minute == 59 ? (*minute = 0) : *minute++;
+              break;
+            default:
+              break;
+            }
+        }
+
+      if (digitalRead (UP_BTN_PIN) == 1)
+        {
+          blink = 1;
+          switch (setIndex)
+            {
+            case SET_HOUR:
+              *hour == 0 ? (*hour = 23) : *hour--;
+              break;
+            case SET_MINUTE:
+              *minute == 0 ? (*minute = 59) : *minute--;
+              break;
+            default:
+              break;
+            }
+        }
+
+      display.fillScreen (GxEPD_BLACK);
+      display.setTextColor (GxEPD_WHITE);
+      display.setFont (&Oswald_Regular46pt7b);
+
+      if (*hour < 10)
+        {
+          text = "0";
+          text += *hour;
+        }
+      else
+        {
+          text = *hour;
+        }
+
+      text += ":";
+
+      if (*minute < 10)
+        {
+          text += "0";
+        }
+
+      text += *minute;
+
+      display.getTextBounds (text, 0, 0, &x1, &y1, &text_width, &text_height);
+
+      display.setCursor ((DISPLAY_WIDTH - text_width) / 2,
+                         text_height + ((DISPLAY_HEIGHT - text_height) / 2));
+
+      if (setIndex == SET_HOUR)
+        {
+          display.setTextColor (blink ? GxEPD_WHITE : GxEPD_BLACK);
+        }
+      if (*hour < 10)
+        {
+          display.print ("0");
+        }
+      display.print (*hour);
+
+      display.setTextColor (GxEPD_WHITE);
+      display.print (":");
+
+      if (setIndex == SET_MINUTE)
+        {
+          display.setTextColor (blink ? GxEPD_WHITE : GxEPD_BLACK);
+        }
+      if (*minute < 10)
+        {
+          display.print ("0");
+        }
+      display.print (*minute);
+
+      display.display (true);
+    }
+
+  if (alarm_set)
+    {
+      uint8_t cur_hour = currentTime.Hour;
+      uint8_t cur_min = currentTime.Minute;
+      uint8_t hour_diff, minute_diff;
+
+      // if hour is not the same
+      if (*hour > cur_hour)
+        {
+          hour_diff = *hour - cur_hour;
+        }
+      else if (*hour <= cur_hour)
+        {
+          hour_diff = (24 - cur_hour) + *hour;
+        }
+
+      if (*minute > cur_min)
+        {
+          minute_diff = *minute - cur_min;
+        }
+      else if (*minute < cur_min)
+        {
+          minute_diff = (60 - cur_min) + *minute;
+        }
+
+      // if hour is the same
+      if ((*hour == cur_hour) && (*minute <= cur_min))
+        {
+          hour_diff = 23;
+          minute_diff = (60 - cur_min) + *minute;
+        }
+      else if ((*hour == cur_hour) && (*minute >= cur_min))
+        {
+          hour_diff = 0;
+          minute_diff = *minute - cur_min;
+        }
+
+      timerConvert (&hour_diff, &minute_diff, timer, false);
+    }
+}
+
+/**
  @brief converts Timer to Hours and minutes and back
- 
+
  @param hours,minutes,timer Pointers to time variables
  @param direction
  @parblock
  false: Hours+Mins -> Timer
+
  true: Timer -> Hours+Mins
 
  Default: false
