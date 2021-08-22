@@ -28,11 +28,24 @@ var NAVTREE =
     [ "About", "index.html#autotoc_md1", null ],
     [ "Features", "index.html#autotoc_md2", null ],
     [ "Roadmap", "index.html#autotoc_md3", null ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
+    ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Variables", "globals_vars.html", null ]
+        [ "Variables", "globals_vars.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -40,7 +53,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"WatchyBase_8cpp.html"
+"Oswald__Regular46pt7b_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

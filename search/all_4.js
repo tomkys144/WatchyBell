@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['index_2emd_5',['index.md',['../index_8md.html',1,'']]]
+  ['connectwifi_14',['connectWiFi',['../classWatchyBase.html#a664845ea571f0aa1cc5d992f97766083',1,'WatchyBase']]]
 ];
