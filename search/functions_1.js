@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['batterysaver_59',['batterySaver',['../classWatchyBase.html#a7ddeaf0d68d99502f08ba30c41a9ffb8',1,'WatchyBase']]]
+  ['alarmconfig_62',['alarmConfig',['../classWatchyBase.html#abffdc919f02dd42f04955961b6178492',1,'WatchyBase']]]
 ];

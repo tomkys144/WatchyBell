@@ -141,11 +141,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a233e6d259d7d4cbb368082c740c0784e"><td class="mdescLeft">&#160;</td><td class="mdescRight">disable WiFi  <a href="classWatchyBase.html#a233e6d259d7d4cbb368082c740c0784e">More...</a><br /></td></tr>
 <tr class="separator:a233e6d259d7d4cbb368082c740c0784e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69f9daedb5e08224eb913ca1d98b6397"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a69f9daedb5e08224eb913ca1d98b6397">setAlarm</a> ()</td></tr>
+<tr class="memdesc:a69f9daedb5e08224eb913ca1d98b6397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup alarm. If already set, gives option to edit or stop.  <a href="classWatchyBase.html#a69f9daedb5e08224eb913ca1d98b6397">More...</a><br /></td></tr>
 <tr class="separator:a69f9daedb5e08224eb913ca1d98b6397"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a0e3ec51f443190b24912cb2d37701f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a7a0e3ec51f443190b24912cb2d37701f">triggerAlarm</a> ()</td></tr>
+<tr class="memdesc:a7a0e3ec51f443190b24912cb2d37701f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if alarm should be triggered and if so, triggers alarm.  <a href="classWatchyBase.html#a7a0e3ec51f443190b24912cb2d37701f">More...</a><br /></td></tr>
 <tr class="separator:a7a0e3ec51f443190b24912cb2d37701f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ddeaf0d68d99502f08ba30c41a9ffb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#a7ddeaf0d68d99502f08ba30c41a9ffb8">batterySaver</a> ()</td></tr>
-<tr class="separator:a7ddeaf0d68d99502f08ba30c41a9ffb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -154,6 +154,9 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:abffdc919f02dd42f04955961b6178492"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#abffdc919f02dd42f04955961b6178492">alarmConfig</a> (uint8_t *hour, uint8_t *minute, int16_t *timer)</td></tr>
+<tr class="memdesc:abffdc919f02dd42f04955961b6178492"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets alarm time  <a href="classWatchyBase.html#abffdc919f02dd42f04955961b6178492">More...</a><br /></td></tr>
+<tr class="separator:abffdc919f02dd42f04955961b6178492"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad25f8459466c83773c361fdf7f4e04aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWatchyBase.html#ad25f8459466c83773c361fdf7f4e04aa">timerConvert</a> (uint8_t *hours, uint8_t *minutes, int16_t *timer, bool direction=false)</td></tr>
 <tr class="memdesc:ad25f8459466c83773c361fdf7f4e04aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts Timer to Hours and minutes and back  <a href="classWatchyBase.html#ad25f8459466c83773c361fdf7f4e04aa">More...</a><br /></td></tr>
 <tr class="separator:ad25f8459466c83773c361fdf7f4e04aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -421,21 +424,53 @@ Need to set the correct axis</dd></dl>
 
 </div>
 </div>
-<a id="a7ddeaf0d68d99502f08ba30c41a9ffb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ddeaf0d68d99502f08ba30c41a9ffb8">&#9670;&nbsp;</a></span>batterySaver()</h2>
+<a id="abffdc919f02dd42f04955961b6178492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abffdc919f02dd42f04955961b6178492">&#9670;&nbsp;</a></span>alarmConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void WatchyBase::batterySaver </td>
+          <td class="memname">void WatchyBase::alarmConfig </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>timer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>trigger alarm </dd></dl>
+
+<p>sets alarm time </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hour,minute,timer</td><td>Timer and time vars pointers </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -576,6 +611,8 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
+<p>Setup alarm. If already set, gives option to edit or stop. </p>
+
 </div>
 </div>
 <a id="a0dd7630080da9a9c948eb56a35e304d3"></a>
@@ -644,11 +681,11 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>converts Timer to Hours and minutes and back </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>battery saver </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hours,minutes,timer</td><td>Pointers to time variables </td></tr>
-    <tr><td class="paramname">direction</td><td><p class="starttd">false: Hours+Mins -&gt; Timer true: Timer -&gt; Hours+Mins</p>
+    <tr><td class="paramname">direction</td><td><p class="starttd">false: Hours+Mins -&gt; Timer</p>
+<p class="intertd">true: Timer -&gt; Hours+Mins</p>
 <p class="endtd">Default: false </p>
 </td></tr>
   </table>
@@ -671,7 +708,9 @@ false </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>set alarm </dd></dl>
+
+<p>Checks if alarm should be triggered and if so, triggers alarm. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>buzz when alarm triggers </dd></dl>
 
 </div>
 </div>
